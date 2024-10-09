@@ -1,0 +1,3 @@
+/Users/rafalzalecki/CLionProjects/TravellingSalesmanProblemBruteForce/cmake-build-debug/CMakeFiles/TravellingSalesmanProblemBruteForce.dir
+/Users/rafalzalecki/CLionProjects/TravellingSalesmanProblemBruteForce/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/rafalzalecki/CLionProjects/TravellingSalesmanProblemBruteForce/cmake-build-debug/CMakeFiles/rebuild_cache.dir
