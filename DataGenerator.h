@@ -7,7 +7,8 @@ class DataGenerator {
 public:
     std::vector<std::vector<int>> matrix;
 
-    void generateData(int n);
+    void generateDataAsymmetric(int n);
+    void generateDataSymmetric(int n);
     void loadData(std::string name);
     void printData();
 };

@@ -4,7 +4,7 @@
 #include <iomanip>
 #include <random>
 
-void DataGenerator::generateData(int n) {
+void DataGenerator::generateDataAsymmetric(int n) {
     std::random_device rd;
     std::uniform_int_distribution<int> dist(1, 100);
     matrix.resize(n, std::vector<int>(n));
@@ -12,6 +12,23 @@ void DataGenerator::generateData(int n) {
         for(int j = 0; j < n; j++) {
             if(i == j) this->matrix[i][j] = -1;
             else this->matrix[i][j] = dist(rd);
+        }
+    }
+}
+
+void DataGenerator::generateDataSymmetric(int n) {
+    std::random_device rd;
+    std::uniform_int_distribution<int> dist(1, 100);
+    matrix.resize(n, std::vector<int>(n));
+    for(int i = 0; i < n; i++) {
+        for(int j = 0; j < n; j++) {
+            if(i == j) {
+                this->matrix[i][j] = -1;
+            } else {
+                int r = dist(rd);
+                this->matrix[i][j] = r;
+                this->matrix[j][i] = r;
+            }
         }
     }
 }
