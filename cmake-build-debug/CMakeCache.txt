@@ -222,6 +222,9 @@ TravellingSalesmanProblemBruteForce_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 TravellingSalesmanProblemBruteForce_SOURCE_DIR:STATIC=/Users/rafalzalecki/CLionProjects/TravellingSalesmanProblemBruteForce
 
+//The directory containing a CMake configuration file for nlohmann_json.
+nlohmann_json_DIR:PATH=/opt/homebrew/share/cmake/nlohmann_json
+
 
 ########################
 # INTERNAL cache entries
@@ -360,4 +363,6 @@ CMAKE_TAPI-ADVANCED:INTERNAL=1
 CMAKE_UNAME:INTERNAL=/usr/bin/uname
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
+//Details about finding nlohmann_json
+FIND_PACKAGE_MESSAGE_DETAILS_nlohmann_json:INTERNAL=[/opt/homebrew/share/cmake/nlohmann_json/nlohmann_jsonConfig.cmake][v3.11.3(3.2.0)]
 

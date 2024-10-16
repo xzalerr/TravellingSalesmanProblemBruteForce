@@ -1,7 +1,6 @@
 #include "DataGenerator.h"
 #include <iostream>
 #include <fstream>
-#include <iomanip>
 #include <random>
 
 void DataGenerator::generateDataAsymmetric(int n) {

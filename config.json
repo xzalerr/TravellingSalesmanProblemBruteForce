@@ -1,0 +1,12 @@
+{
+  "mode": "simulation",
+  "dataFile": "/Users/rafalzalecki/CLionProjects/TravellingSalesmanProblemBruteForce/matrix_6x6.atsp",
+  "generateRandom": true,
+  "generatorProblemSize": 6,
+  "randomType": "symmetric",
+  "problemSizes": [5, 6],
+  "iterations": 10,
+  "nnStart": 0,
+  "randomizedIterations": 10000,
+  "simulationAlgorithm": "essa"
+}

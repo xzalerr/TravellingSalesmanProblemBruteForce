@@ -1,4 +1,5 @@
 /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/Applications/CLion.app/Contents/bin/ninja/mac/aarch64/ninja -G Ninja -S /Users/rafalzalecki/CLionProjects/TravellingSalesmanProblemBruteForce -B /Users/rafalzalecki/CLionProjects/TravellingSalesmanProblemBruteForce/cmake-build-debug
--- Configuring done (0.1s)
+-- Found nlohmann_json: /opt/homebrew/share/cmake/nlohmann_json/nlohmann_jsonConfig.cmake (found suitable version "3.11.3", minimum required is "3.2.0") 
+-- Configuring done (0.0s)
 -- Generating done (0.0s)
 -- Build files have been written to: /Users/rafalzalecki/CLionProjects/TravellingSalesmanProblemBruteForce/cmake-build-debug

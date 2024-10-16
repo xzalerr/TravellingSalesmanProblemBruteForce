@@ -7,4 +7,10 @@ add_executable(TravellingSalesmanProblemBruteForce main.cpp
         DataGenerator.cpp
         DataGenerator.h
         ProblemSolver.cpp
-        ProblemSolver.h)
+        ProblemSolver.h
+        Config.cpp
+        Config.h
+)
+
+find_package(nlohmann_json 3.2.0 REQUIRED)
+target_link_libraries(TravellingSalesmanProblemBruteForce PRIVATE nlohmann_json::nlohmann_json)

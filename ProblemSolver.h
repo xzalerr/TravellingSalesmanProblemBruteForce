@@ -5,8 +5,11 @@
 
 class ProblemSolver {
 public:
-    int findCost(std::vector<std::vector<int>>& matrix, std::vector<int> path);
-    std::pair<int, std::vector<int>> tspBruteForce(std::vector<std::vector<int>>& matrix);
+    static int findCost(std::vector<std::vector<int>>& matrix, std::vector<int> path);
+    static int findNearNeigh(std::vector<std::vector<int>>& matrix, std::vector<bool>& visited, int city);
+    int tspBruteForce(std::vector<std::vector<int>>& matrix);
+    int tspGreedyAproach(std::vector<std::vector<int>>& matrix, int startCity);
+    int tspRandomized(std::vector<std::vector<int>>& matrix, int iterations);
 };
 
 
