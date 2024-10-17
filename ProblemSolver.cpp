@@ -12,7 +12,8 @@ int ProblemSolver::findCost(std::vector<std::vector<int>> &matrix, std::vector<i
 }
 
 int ProblemSolver::findNearNeigh(std::vector<std::vector<int>> &matrix, std::vector<bool> &visited, int city) {
-    int min, nearest = INT_MAX;
+    int min = INT_MAX;
+    int nearest = -1;
     for(int i = 0; i < visited.size(); i++) {
         if((matrix[city][i] < min) && !visited[i]) {
             min = matrix[city][i];
@@ -40,7 +41,7 @@ int ProblemSolver::tspBruteForce(std::vector<std::vector<int>> &matrix) {
     return minCost;
 }
 
-int ProblemSolver::tspGreedyAproach(std::vector<std::vector<int>> &matrix, int startCity) {
+int ProblemSolver::tspNN(std::vector<std::vector<int>> &matrix, int startCity) {
     uint size = matrix.size();
     int minCost = 0;
     std::vector<bool> visited(size, false);

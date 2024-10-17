@@ -77,6 +77,13 @@ build CMakeFiles/TravellingSalesmanProblemBruteForce.dir/Config.cpp.o: CXX_COMPI
   OBJECT_DIR = CMakeFiles/TravellingSalesmanProblemBruteForce.dir
   OBJECT_FILE_DIR = CMakeFiles/TravellingSalesmanProblemBruteForce.dir
 
+build CMakeFiles/TravellingSalesmanProblemBruteForce.dir/Runner.cpp.o: CXX_COMPILER__TravellingSalesmanProblemBruteForce_unscanned_Debug /Users/rafalzalecki/CLionProjects/TravellingSalesmanProblemBruteForce/Runner.cpp || cmake_object_order_depends_target_TravellingSalesmanProblemBruteForce
+  DEP_FILE = CMakeFiles/TravellingSalesmanProblemBruteForce.dir/Runner.cpp.o.d
+  FLAGS = -g -std=gnu++20 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.0.sdk -fcolor-diagnostics
+  INCLUDES = -isystem /opt/homebrew/include
+  OBJECT_DIR = CMakeFiles/TravellingSalesmanProblemBruteForce.dir
+  OBJECT_FILE_DIR = CMakeFiles/TravellingSalesmanProblemBruteForce.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target TravellingSalesmanProblemBruteForce
@@ -85,7 +92,7 @@ build CMakeFiles/TravellingSalesmanProblemBruteForce.dir/Config.cpp.o: CXX_COMPI
 #############################################
 # Link the executable TravellingSalesmanProblemBruteForce
 
-build TravellingSalesmanProblemBruteForce: CXX_EXECUTABLE_LINKER__TravellingSalesmanProblemBruteForce_Debug CMakeFiles/TravellingSalesmanProblemBruteForce.dir/main.cpp.o CMakeFiles/TravellingSalesmanProblemBruteForce.dir/DataGenerator.cpp.o CMakeFiles/TravellingSalesmanProblemBruteForce.dir/ProblemSolver.cpp.o CMakeFiles/TravellingSalesmanProblemBruteForce.dir/Config.cpp.o
+build TravellingSalesmanProblemBruteForce: CXX_EXECUTABLE_LINKER__TravellingSalesmanProblemBruteForce_Debug CMakeFiles/TravellingSalesmanProblemBruteForce.dir/main.cpp.o CMakeFiles/TravellingSalesmanProblemBruteForce.dir/DataGenerator.cpp.o CMakeFiles/TravellingSalesmanProblemBruteForce.dir/ProblemSolver.cpp.o CMakeFiles/TravellingSalesmanProblemBruteForce.dir/Config.cpp.o CMakeFiles/TravellingSalesmanProblemBruteForce.dir/Runner.cpp.o
   FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.0.sdk
   OBJECT_DIR = CMakeFiles/TravellingSalesmanProblemBruteForce.dir
   POST_BUILD = :

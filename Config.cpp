@@ -11,17 +11,24 @@ void Config::loadData(const std::string& fileName) {
     }
     json data = json::parse(file);
     mode = data.at("mode").get<std::string>();
-    dataFile = data.at("dataFile").get<std::string>();
-    generateRandom = data.at("generateRandom").get<bool>();
-    generatorProblemSize = data.at("generatorProblemSize").get<int>();
-    randomType = data.at("randomType").get<std::string>();
-    problemSizes = data.at("problemSizes").get<std::vector<int>>();
-    iterations = data.at("iterations").get<int>();
-    nnStart = data.at("nnStart").get<int>();
-    randomizedIterations = data.at("randomizedIterations").get<int>();
-    simulationAlgorithm = data.at("simulationAlgorithm").get<std::string>();
-
-    if (mode != "test" && mode != "simulation") {
+    if(mode=="test") {
+        const auto& testData = data.at("test");
+        dataFile = testData.at("dataFile").get<std::string>();
+        generateRandom = testData.at("generateRandom").get<bool>();
+        generatorProblemSize = testData.at("generatorProblemSize").get<int>();
+        randomType = testData.at("randomType").get<std::string>();
+        nnStart = testData.at("nnStart").get<int>();
+        randomizedIterations = testData.at("randomizedIterations").get<int>();
+    } else if(mode=="simulation") {
+        const auto& simData = data.at("simulation");
+        problemSizes = simData.at("problemSizes").get<std::vector<int>>();
+        iterations = simData.at("iterations").get<int>();
+        nnStart = simData.at("nnStart").get<int>();
+        randomizedIterations = simData.at("randomizedIterations").get<int>();
+        simulationAlgorithm = simData.at("simulationAlgorithm").get<std::string>();
+        simulationRandomType = simData.at("simulationRandomType").get<std::string>();
+        showProgress = simData.at("showProgress").get<bool>();
+    } else {
         std::cerr << "Niepoprawny tryb: " << mode << ", do wyboru są opcje test i simulation!\n";
     }
 }

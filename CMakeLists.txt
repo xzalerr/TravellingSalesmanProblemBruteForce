@@ -10,6 +10,8 @@ add_executable(TravellingSalesmanProblemBruteForce main.cpp
         ProblemSolver.h
         Config.cpp
         Config.h
+        Runner.cpp
+        Runner.h
 )
 
 find_package(nlohmann_json 3.2.0 REQUIRED)
