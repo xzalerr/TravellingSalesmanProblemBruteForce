@@ -1,5 +1,5 @@
-#include <fstream>
 #include "Runner.h"
+#include <fstream>
 
 
 Runner::Runner(Config& config, DataGenerator& generator, ProblemSolver& ps) {
@@ -51,18 +51,15 @@ void Runner::executeTest() {
 }
 
 void Runner::executeSimulation() {
-    std::string fileName = config.simulationAlgorithm + "_" + (config.simulationRandomType == "symmetric" ? "symmetric" : "asymmetric") + ".csv";
-    std::ofstream outFile(fileName);
-    outFile << "nr pomiaru:;";
-    for(int i = 1; i <= config.iterations; i++) {
-        outFile << i << ";";
-    }
-    outFile << "\nrozmiar:;czasy[ms]:\n";
+    std::map<int, std::vector<double>> resultsBrute;
+    std::map<int, std::vector<double>> resultsNN;
+    std::map<int, std::vector<double>> resultsRandom;
 
-    for (int size : config.problemSizes) {
-        outFile << size;
-        double sumDuration = 0;
-        for (int i = 0; i < config.iterations; i++) {
+    for(int size : config.problemSizes) {
+        double sumDurationBrute = 0;
+        double sumDurationNN = 0;
+        double sumDurationRandom = 0;
+        for(int i = 0; i < config.iterations; i++) {
             if (config.simulationRandomType == "symmetric") {
                 generator.generateDataSymmetric(size);
             } else if (config.simulationRandomType == "asymmetric") {
@@ -72,37 +69,68 @@ void Runner::executeSimulation() {
                 break;
             }
 
-            int minCost = 0;
-            double duration = 0;
+            int minCostBrute = 0;
+            int minCostNN = 0;
+            int minCostRandom = 0;
 
-            if (config.simulationAlgorithm == "bruteForce") {
-                duration = measureBruteForce(minCost);
-            } else if (config.simulationAlgorithm == "greedy") {
-                duration = measureNN(minCost);
-            } else if (config.simulationAlgorithm == "random") {
-                duration = measureRandomized(minCost);
-            } else {
-                std::cerr << "Nieznany algorytm: " << config.simulationAlgorithm << std::endl;
-                break;
-            }
+            double durationBrute = measureBruteForce(minCostBrute);
+            double durationNN = measureNN(minCostNN);
+            double durationRandom = measureRandomized(minCostRandom);
 
-            outFile << ";" << duration;
 
-            sumDuration += duration;
+            resultsBrute[size].emplace_back(durationBrute);
+            resultsNN[size].emplace_back(durationNN);
+            resultsRandom[size].emplace_back(durationRandom);
+
+            sumDurationBrute += durationBrute;
+            sumDurationNN += durationNN;
+            sumDurationRandom += durationRandom;
+
 
             if (config.showProgress) {
-                double averageDuration = sumDuration / (i + 1);
+                double averageDurationBrute = sumDurationBrute / (i + 1);
+                double averageDurationNN = sumDurationNN / (i + 1);
+                double averageDurationRandom= sumDurationRandom / (i + 1);
 
                 std::cout << "Rozmiar problemu: " << size << "\n";
                 std::cout << "Iteracja: " << (i + 1) << "/" << config.iterations << "\n";
-                std::cout << "Średni czas: " << averageDuration << " ms\n";
+                std::cout << "Średni czas Brute: " << averageDurationBrute << " ms\n";
+                std::cout << "Średni czas NN: " << averageDurationNN << " ms\n";
+                std::cout << "Średni czas Random: " << averageDurationRandom << " ms\n";
             } else {
-                double averageDuration = sumDuration / (i + 1);
-                std::cout << "Średni czas: " << averageDuration << " ms\n";
+                double averageDurationBrute = sumDurationBrute / (i + 1);
+                double averageDurationNN = sumDurationNN / (i + 1);
+                double averageDurationRandom= sumDurationRandom / (i + 1);
+
+                std::cout << "Średni czas Brute: " << averageDurationBrute << " ms\n";
+                std::cout << "Średni czas NN: " << averageDurationNN << " ms\n";
+                std::cout << "Średni czas Random: " << averageDurationRandom << " ms\n";
             }
         }
-        outFile << "\n";
     }
+    saveToCSV(resultsBrute, "results_brute_force");
+    saveToCSV(resultsNN, "results_nn");
+    saveToCSV(resultsRandom, "results_random");
+}
 
-    outFile.close();
+void Runner::saveToCSV(std::map<int, std::vector<double>> &results, std::string alg) {
+    std::string file = alg + "_" + (config.simulationRandomType == "symmetric" ? "symmetric" : "asymmetric") + ".csv" ;
+    std::ofstream out(file);
+    out << "rozmiar:";
+    for(auto& kv : results) {
+        out << ";"<< kv.first;
+    }
+    out << "\n";
+
+    for(int i = 0; i < config.iterations; i++) {
+        out<< i + 1;
+        for (auto& kv : results) {
+            if (i < kv.second.size()) {
+                out << ";" << kv.second[i];
+            } else {
+                out << ";";
+            }
+        }
+        out << "\n";
+    }
 }

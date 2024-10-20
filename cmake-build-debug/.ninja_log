@@ -1,8 +1,12 @@
 # ninja log v5
 780	897	1729188346372042300	TravellingSalesmanProblemBruteForce	40e985af3bd39cdc
-1	75	1729189559875723179	build.ninja	182a13a4d1ef6997
+1	75	1729259666137268869	build.ninja	182a13a4d1ef6997
 5	841	1729119180178232295	CMakeFiles/TravellingSalesmanProblemBruteForce.dir/DataGenerator.cpp.o	aa1827e73403ab4f
 6	1505	1729187527811799538	CMakeFiles/TravellingSalesmanProblemBruteForce.dir/Config.cpp.o	cecdc27d6a1694e
 4	860	1729187527167689097	CMakeFiles/TravellingSalesmanProblemBruteForce.dir/main.cpp.o	72b9bdd815d03c93
 4	745	1729171601872002871	CMakeFiles/TravellingSalesmanProblemBruteForce.dir/ProblemSolver.cpp.o	62c0400ea1f86d6a
 5	780	1729188346253985381	CMakeFiles/TravellingSalesmanProblemBruteForce.dir/Runner.cpp.o	93b1c2de05278a0d
+3	714	1729259670639424774	CMakeFiles/TravellingSalesmanProblemBruteForce.dir/ProblemSolver.cpp.o	62c0400ea1f86d6a
+2	820	1729259670743891906	CMakeFiles/TravellingSalesmanProblemBruteForce.dir/main.cpp.o	72b9bdd815d03c93
+3	886	1729259670812172601	CMakeFiles/TravellingSalesmanProblemBruteForce.dir/Runner.cpp.o	93b1c2de05278a0d
+886	1021	1729259670948409337	TravellingSalesmanProblemBruteForce	40e985af3bd39cdc

@@ -4,6 +4,7 @@
 #include "Config.h"
 #include "DataGenerator.h"
 #include "ProblemSolver.h"
+#include <map>
 
 class Runner {
 public:
@@ -18,6 +19,7 @@ public:
     double measureRandomized(int& minCost);
     void executeTest();
     void executeSimulation();
+    void saveToCSV(std::map<int, std::vector<double>>& results, std::string alg);
 };
 
 

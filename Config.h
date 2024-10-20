@@ -16,7 +16,6 @@ public:
     int iterations;
     int nnStart;
     int randomizedIterations;
-    std::string simulationAlgorithm;
     std::string simulationRandomType;
     bool showProgress;
 

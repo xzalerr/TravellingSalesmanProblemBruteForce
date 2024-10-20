@@ -25,7 +25,6 @@ void Config::loadData(const std::string& fileName) {
         iterations = simData.at("iterations").get<int>();
         nnStart = simData.at("nnStart").get<int>();
         randomizedIterations = simData.at("randomizedIterations").get<int>();
-        simulationAlgorithm = simData.at("simulationAlgorithm").get<std::string>();
         simulationRandomType = simData.at("simulationRandomType").get<std::string>();
         showProgress = simData.at("showProgress").get<bool>();
     } else {

@@ -5,26 +5,30 @@
 
 void DataGenerator::generateDataAsymmetric(int n) {
     std::random_device rd;
+    std::mt19937 gen(rd());
     std::uniform_int_distribution<int> dist(1, 100);
+    matrix.clear();
     matrix.resize(n, std::vector<int>(n));
     for(int i = 0; i < n; i++) {
         for(int j = 0; j < n; j++) {
             if(i == j) this->matrix[i][j] = -1;
-            else this->matrix[i][j] = dist(rd);
+            else this->matrix[i][j] = dist(gen);
         }
     }
 }
 
 void DataGenerator::generateDataSymmetric(int n) {
     std::random_device rd;
+    std::mt19937 gen(rd());
     std::uniform_int_distribution<int> dist(1, 100);
+    matrix.clear();
     matrix.resize(n, std::vector<int>(n));
     for(int i = 0; i < n; i++) {
         for(int j = 0; j < n; j++) {
             if(i == j) {
                 this->matrix[i][j] = -1;
             } else {
-                int r = dist(rd);
+                int r = dist(gen);
                 this->matrix[i][j] = r;
                 this->matrix[j][i] = r;
             }
