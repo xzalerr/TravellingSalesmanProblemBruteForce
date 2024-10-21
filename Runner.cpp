@@ -9,6 +9,7 @@ Runner::Runner(Config& config, DataGenerator& generator, ProblemSolver& ps) {
 }
 
 double Runner::measureBruteForce(int &minCost) {
+    // Zmierz czas przed i po wykonaniu funkcji i oblicz różnice w ms
     auto start = std::chrono::high_resolution_clock::now();
     minCost = ps.tspBruteForce(generator.matrix);
     auto end = std::chrono::high_resolution_clock::now();
@@ -16,6 +17,7 @@ double Runner::measureBruteForce(int &minCost) {
 }
 
 double Runner::measureNN(int &minCost) {
+    // Zmierz czas przed i po wykonaniu funkcji i oblicz różnice w ms
     auto start = std::chrono::high_resolution_clock::now();
     minCost = ps.tspNN(generator.matrix, config.nnStart);
     auto end = std::chrono::high_resolution_clock::now();
@@ -23,6 +25,7 @@ double Runner::measureNN(int &minCost) {
 }
 
 double Runner::measureRandomized(int &minCost) {
+    // Zmierz czas przed i po wykonaniu funkcji i oblicz różnice w ms
     auto start = std::chrono::high_resolution_clock::now();
     minCost = ps.tspRandomized(generator.matrix, config.randomizedIterations);
     auto end = std::chrono::high_resolution_clock::now();
@@ -30,6 +33,10 @@ double Runner::measureRandomized(int &minCost) {
 }
 
 void Runner::executeTest() {
+    /* Sprawdź czy użytkownik zadał generowanie czy wczytanie grafu
+     * Jeśli generowanie sprawdź czy symetryczne czy nie i wygeneruj
+     * W przeciwnym wypadku wczytaj
+     */
     if (config.generateRandom) {
         if (config.randomType == "symmetric") {
             generator.generateDataSymmetric(config.generatorProblemSize);
@@ -41,6 +48,7 @@ void Runner::executeTest() {
         generator.loadData(config.dataFile);
         generator.printData();
     }
+    // Oblicz czasy i wyniki algorytmów i wypisz na ekranie
     int minCostBruce, minCostNN, minCostRandomized;
     double timeBruce = measureBruteForce(minCostBruce);
     double timeNN = measureNN(minCostNN);
@@ -51,10 +59,17 @@ void Runner::executeTest() {
 }
 
 void Runner::executeSimulation() {
+    /* Mapy do przechowywania wyników w formacie gdzie klucz to rozmiar problemu
+     * a wartość jest wektorem z przechowanymi czasami dla danego rozmiaru w ms
+     */
     std::map<int, std::vector<double>> resultsBrute;
     std::map<int, std::vector<double>> resultsNN;
     std::map<int, std::vector<double>> resultsRandom;
 
+    /* Przeiteruj po zadanych w pliku konfiguracyjnym rozmiarach problemu
+     * Sprawdź czy generować graf symetryczny czy nie
+     * Wykonaj algorytmy i zapisz ich czas w mapie dla odpowiedniego klucza
+     */
     for(int size : config.problemSizes) {
         double sumDurationBrute = 0;
         double sumDurationNN = 0;
@@ -86,7 +101,10 @@ void Runner::executeSimulation() {
             sumDurationNN += durationNN;
             sumDurationRandom += durationRandom;
 
-
+            /* Jeśli użytkownik zaznaczył pokazywanie postępu to
+             * pokaż rozmiar problemu, nr iteracji oraz średni czas każdego
+             * z algorytmów, w przeciwnym razie pokaż tylko średnie czasy
+             */
             if (config.showProgress) {
                 double averageDurationBrute = sumDurationBrute / (i + 1);
                 double averageDurationNN = sumDurationNN / (i + 1);
@@ -108,20 +126,24 @@ void Runner::executeSimulation() {
             }
         }
     }
+    // Zapisz do plików .csv
     saveToCSV(resultsBrute, "results_brute_force");
     saveToCSV(resultsNN, "results_nn");
     saveToCSV(resultsRandom, "results_random");
 }
 
 void Runner::saveToCSV(std::map<int, std::vector<double>> &results, std::string alg) {
+    // Utwórz plik o nazwie "nazwa_algorytmu_symetrycznosc_csv"
     std::string file = alg + "_" + (config.simulationRandomType == "symmetric" ? "symmetric" : "asymmetric") + ".csv" ;
     std::ofstream out(file);
+    // W pierwszym wierszu napisz kolejne zbadane rozmiary
     out << "rozmiar:";
     for(auto& kv : results) {
         out << ";"<< kv.first;
     }
     out << "\n";
 
+    // Zapisuj wyniki w odpowiednich kolumnach wiersz po wierszu
     for(int i = 0; i < config.iterations; i++) {
         out<< i + 1;
         for (auto& kv : results) {

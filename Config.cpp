@@ -4,13 +4,21 @@
 using json = nlohmann::json;
 
 void Config::loadData(const std::string& fileName) {
+    // Otwórz plik konfiguracyjny o nazwie podanej jako parametr
     std::ifstream file(fileName);
     if(!file.is_open()) {
         std::cerr << "Nie udało się otworzyć pliku konfiguracyjnego!\n";
         return;
     }
+    /* Wczytanie danych z otwartego pliku i przekształcenie do obiektu json za pomoca
+     * biblioteki nlohmaann/json.hpp
+     */
     json data = json::parse(file);
     mode = data.at("mode").get<std::string>();
+    /* W zależności od trybu, wczytujemy odpowiednie dane konfiguracyjne.
+     * Tryb "test" ładuje ustawienia specyficzne dla testów, podczas gdy tryb "simulation"
+     * ładuje dane przeznaczone do symulacji.
+     */
     if(mode=="test") {
         const auto& testData = data.at("test");
         dataFile = testData.at("dataFile").get<std::string>();

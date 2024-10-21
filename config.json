@@ -7,7 +7,7 @@
     "generatorProblemSize": 8,
     "randomType": "symmetric",
     "nnStart": 0,
-    "randomizedIterations": 5000
+    "randomizedIterations": 10000
   },
   "simulation": {
     "problemSizes": [6, 7, 8, 9, 10, 11, 12],
