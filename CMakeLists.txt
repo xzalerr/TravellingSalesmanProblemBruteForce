@@ -14,5 +14,11 @@ add_executable(TravellingSalesmanProblemBruteForce main.cpp
         Runner.h
 )
 
-find_package(nlohmann_json 3.2.0 REQUIRED)
-target_link_libraries(TravellingSalesmanProblemBruteForce PRIVATE nlohmann_json::nlohmann_json)
+include(FetchContent)
+FetchContent_Declare(
+        json
+        GIT_REPOSITORY https://github.com/nlohmann/json.git
+        GIT_TAG v3.10.4
+)
+FetchContent_MakeAvailable(json)
+target_link_libraries(TravellingSalesmanProblemBruteForce nlohmann_json::nlohmann_json)
